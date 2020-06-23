@@ -1,0 +1,75 @@
+{% extends 'sokol/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: black;
+            font-size: 22px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+    </style>
+    </head>
+
+    <body>
+
+    <div class="row" align="center">
+        <h2 class="title">User Profile</h2>
+    </div>
+
+
+    <div class="card">
+        {% if object.avatar %}
+            <img src="{{ object.avatar.url }}" height="150" width="120">
+        {% else %}
+            <img src="{% static "images/default_user.png" %}">
+        {% endif %}
+        <p>Username: {{ object.user.username }}</p>
+        <p>First name: {{ object.user.first_name }}</p>
+        <p>Last name: {{ object.user.last_name }}</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+        <button type="button" onclick="ajaxChange()" class="btn btn-outline-dark">Turn off/on status</button>
+        <p></p>
+
+        <p>
+            <a href="{% url 'sokol:logged_out' %}">
+                <button type="submit">Log Out</button>
+            </a>
+        </p>
+    </div>
+
+    </body>
+
+    {% if request.user.is_authenticated %}
+        <script>
+            function ajaxChange() {
+                $.get('{% url "sokol:change_status" slug=request.user.profile.slug %}');
+            }
+        </script>
+    {% endif %}
+{% endblock %}

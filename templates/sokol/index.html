@@ -1,0 +1,21 @@
+{% extends 'sokol/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <style>
+        .col-lg-6 {
+            margin-top: 20px;
+            margin-bottom: 20px
+        }
+
+        .col-lg-6 {
+            margin-right: auto;
+            font-style: normal;
+            font-size: 18px
+        }
+    </style>
+    <div class="row1">
+        <div class="col-lg-6"><img src="{% static "images/main.jpg" %}" class="img-rounded" alt="Cinque Terre"
+                                   style="width:100%" width=100% height=100%></div>
+    </div>
+
+{% endblock %}
