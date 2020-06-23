@@ -5,7 +5,7 @@ from mptt.models import MPTTModel
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name = 'profile')
+    user = models.OneToOneField(User, related_name='profile')
     avatar = models.ImageField(upload_to='profile_images', blank=True)
     slug = models.SlugField(max_length=40, blank=True)
     username = models.CharField(max_length=40, blank=True)
@@ -22,12 +22,11 @@ class UserProfile(models.Model):
         else:
             return "/static/images/main.jpg"
 
-
     def __str__(self):
         return self.user.username
 
 
 class Status(models.Model):
-    user_fk = models.OneToOneField(UserProfile, related_name = 'status')
+    user_fk = models.OneToOneField(UserProfile, related_name='status')
     timestamp = models.DateTimeField(auto_created=True)
     is_online = models.BooleanField(default=True)

@@ -5,7 +5,7 @@ from django.forms import ModelForm
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required= True)
+    email = forms.EmailField(required=True)
     first_name = forms.CharField(max_length=30, required=False, help_text='optional')
     last_name = forms.CharField(max_length=30, required=False, help_text='optional')
 

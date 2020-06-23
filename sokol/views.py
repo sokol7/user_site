@@ -74,4 +74,3 @@ def view_set_status(request, slug):
     s.is_online = not s.is_online
     s.save()
     return HttpResponse()
-
