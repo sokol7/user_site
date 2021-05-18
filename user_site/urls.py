@@ -20,6 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from sokol import views
 
+## test, then remove it!!!
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.HomePage.as_view(), name='homepage'),
